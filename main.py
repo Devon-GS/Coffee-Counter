@@ -29,7 +29,23 @@ for x in coffee_names_filtered:
 for x in coffee_extracted_list:
         coffees[x[0]] += float(x[1])
 
+#  ########################################################################
 
+# Coffees that use milk
+def milk():
+     milk_list = ['LAVAZZA AMERICANO W/MILK 3',
+                  'LAVAZZA ICED COFFEE 350ML',
+                  'LAVAZZA ICED COFFEE 250ML',
+                  'BEAN COFFEE MACHINE',
+                  'LAVAZZA AMERI W/MILK 250ML',
+                  'HOT CHOCOLATE 350ML',
+                  'LAVAZZA CAPPUCCINO 250ML',
+                  'LAVAZZA CAPPUCCINO 350ML',
+                  ]
+     
+for x in coffees:
+     print(x)
+          
 
 
 
