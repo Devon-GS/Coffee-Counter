@@ -1,5 +1,9 @@
 import pandas as pd
 
+#  ########################################################################
+#  READ IN DATA AND PULL OUT NEEDED INFORNATION
+#  ########################################################################
+
 data = pd.read_csv('1 - Resource/coffee.csv', skip_blank_lines=True, dtype=str, keep_default_na=False)
 
 # Extract columns and strip white space
@@ -30,10 +34,12 @@ for x in coffee_extracted_list:
         coffees[x[0]] += float(x[1])
 
 #  ########################################################################
+#  FUNCTIONS
+#  ########################################################################
 
 # Coffees that use milk
 def milk():
-     milk_list = ['LAVAZZA AMERICANO W/MILK 3',
+    milk_list = ['LAVAZZA AMERICANO W/MILK 3',
                   'LAVAZZA ICED COFFEE 350ML',
                   'LAVAZZA ICED COFFEE 250ML',
                   'BEAN COFFEE MACHINE',
@@ -43,26 +49,43 @@ def milk():
                   'LAVAZZA CAPPUCCINO 350ML',
                   ]
      
-for x in coffees:
-     print(x)
-          
+    total_coffees = 0.0
 
+    for name, quantity in coffees.items():
+          if name in milk_list:
+              total_coffees += quantity
 
+    return total_coffees
 
+# Coffees for vending machine    
+def bean_coffee():
+    milk_list = ['BEAN COFFEE MACHINE']
+     
+    total_coffees = 0.0
 
+    for name, quantity in coffees.items():
+          if name in milk_list:
+              total_coffees += quantity
+    
+    return total_coffees
 
+# Fresh made coffees
+def lavazza_coffee():
+    milk_list = ['LAVAZZA AMERICANO W/MILK 3',
+                 'LAVAZZA ICED COFFEE 350ML',
+                 'LAVAZZA ICED COFFEE 250ML',
+                 'LAVAZZA AMERI W/MILK 250ML',
+                 'LAVAZZA ESPRESSO',
+                 'LAVAZZA AMERICANO 250ML',
+                 'LAVAZZA CAPPUCCINO 250ML',
+                 'LAVAZZA CAPPUCCINO 350ML',
+                 'LAVAZZA AMERICANO 350ML',
+                 ]
+     
+    total_coffees = 0.0
 
+    for name, quantity in coffees.items():
+          if name in milk_list:
+              total_coffees += quantity
 
-'''
-'ROOIBOS TEA 250ML'
-'LAVAZZA AMERICANO W/MILK 3'
-'LAVAZZA ICED COFFEE 350ML'
-'BEAN COFFEE MACHINE'
-'LAVAZZA AMERI W/MILK 250ML'
-'HOT CHOCOLATE 350ML'
-'LAVAZZA ESPRESSO'
-'LAVAZZA AMERICANO 250ML'
-'LAVAZZA CAPPUCCINO 250ML'
-'LAVAZZA CAPPUCCINO 350ML'
-'LAVAZZA AMERICANO 350ML'
-'''
+    return total_coffees
