@@ -112,3 +112,33 @@ def lavazza_coffee():
 #  ########################################################################
 #  USER INTERFACE
 #  ########################################################################
+
+while True:
+    print()
+    print('Push any other button to exit!')
+    print('Data Loaded in please select one of the follwing options:')
+    print('1 - Coffees that use milk')
+    print('2 - Bean coffees')
+    print('3 - Lavazza Coffee')
+
+    user = input('Please select an option: ')
+
+    if user == '1':
+        print()
+        print('***********************************')
+        print(f'Coffees That Use Milk = {milk()}')
+        print('***********************************')
+    elif user == '2':
+        print()
+        print('***********************************')
+        print(f'Bean Coffees = {bean_coffee()}')
+        print('***********************************')
+    elif user == '3':
+        print()
+        print('***********************************')
+        print(f'Lavazza Coffees = {lavazza_coffee()}')
+        print('***********************************')
+    else:
+        print()
+        print('Exiting Program...')
+        break
