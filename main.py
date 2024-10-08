@@ -4,7 +4,26 @@ import pandas as pd
 #  READ IN DATA AND PULL OUT NEEDED INFORNATION
 #  ########################################################################
 
-data = pd.read_csv('1 - Resource/coffee.csv', skip_blank_lines=True, dtype=str, keep_default_na=False)
+try:
+    cwd_list = os.listdir()
+
+    file_names = []
+    for x in cwd_list:
+        if '.csv' in x:
+            file_names.append(x)
+    
+    if len(file_names) == 0: 
+        raise Exception("No .csv files in directory")
+
+    if len(file_names) > 1:
+        raise Exception("Too many .csv files in directory")
+        
+    file = file_names[0]
+        
+    data = pd.read_csv(file, skip_blank_lines=True, dtype=str, keep_default_na=False)
+     
+except Exception as error:
+    print(f'Somthing went wrong: {error}')
 
 # Extract columns and strip white space
 coffee_extract = data.iloc[:, [1, 6]].values.tolist()
@@ -89,3 +108,7 @@ def lavazza_coffee():
               total_coffees += quantity
 
     return total_coffees
+
+#  ########################################################################
+#  USER INTERFACE
+#  ########################################################################
