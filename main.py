@@ -1,3 +1,5 @@
+import os
+import sys
 import pandas as pd
 
 #  ########################################################################
@@ -24,6 +26,8 @@ try:
      
 except Exception as error:
     print(f'Somthing went wrong: {error}')
+    os.system('pause')
+    sys.exit(1)
 
 # Extract columns and strip white space
 coffee_extract = data.iloc[:, [1, 6]].values.tolist()
