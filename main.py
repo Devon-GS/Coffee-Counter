@@ -60,59 +60,94 @@ for x in coffee_extracted_list:
 #  FUNCTIONS
 #  ########################################################################
 
-# Coffees that use milk
+# Coffees That Use Milk
 def milk():
-    milk_list = ['LAVAZZA AMERICANO W/MILK 3',
-                  'LAVAZZA ICED COFFEE 350ML',
-                  'LAVAZZA ICED COFFEE 250ML',
-                  'BEAN COFFEE MACHINE',
-                  'LAVAZZA AMERI W/MILK 250ML',
-                  'HOT CHOCOLATE 350ML',
-                  'LAVAZZA CAPPUCCINO 250ML',
-                  'LAVAZZA CAPPUCCINO 350ML',
-                  ]
-     
-    total_coffees = 0.0
+	coffee_list = ['BEAN COFFEE MACHINE',
+                    'LAVAZZA AMERI W/MILK 250ML',
+                    'LAVAZZA AMERICANO W/MILK 3',
+                    'LAVAZZA CAPPUCCINO 250ML',
+                    'LAVAZZA CAPPUCCINO 350ML',
+                    'LAVAZZA HOT CHOCOLATE 350M',
+                    'LAVAZZA ICED COFFEE 350ML',
+                    'LAVAZZA ICED COFFEE 250ML',
+                    'LAVAZZA MOCHACCINO 350ML',  
+                    'ROOIBOS TEA 350ML',         
+                    'ROOIBOS TEA 250ML',
+                    'PANCAKE (FPG)'             
+                    ]
 
-    for name, quantity in coffees.items():
-          if name in milk_list:
-              total_coffees += quantity
+	total_coffees = 0.0
 
-    return total_coffees
+	total_pancakes = 0.0
+	
+	for name, quantity in coffees.items():
+		if name in coffee_list:
+			if name == 'PANCAKE (FPG)':
+				total_pancakes += quantity
+			else:
+				total_coffees += quantity
 
-# Coffees for vending machine    
+	return total_coffees, total_pancakes
+
+# Coffees For Vending Machine    
 def bean_coffee():
-    milk_list = ['BEAN COFFEE MACHINE']
+    coffee_list = ['BEAN COFFEE MACHINE']
      
     total_coffees = 0.0
 
     for name, quantity in coffees.items():
-          if name in milk_list:
+          if name in coffee_list:
               total_coffees += quantity
     
     return total_coffees
 
-# Fresh made coffees
+# Fresh Made Coffees
 def lavazza_coffee():
-    milk_list = ['LAVAZZA AMERICANO W/MILK 3',
-                 'LAVAZZA ICED COFFEE 350ML',
-                 'LAVAZZA ICED COFFEE 250ML',
-                 'LAVAZZA AMERI W/MILK 250ML',
-                 'LAVAZZA ESPRESSO',
-                 'LAVAZZA AMERICANO 250ML',
-                 'LAVAZZA CAPPUCCINO 250ML',
-                 'LAVAZZA CAPPUCCINO 350ML',
-                 'LAVAZZA AMERICANO 350ML',
+    coffee_list = ['LAVAZZA AMERI W/MILK 250ML',
+                    'LAVAZZA AMERICANO 250ML',
+                    'LAVAZZA AMERICANO 350ML',
+                    'LAVAZZA AMERICANO W/MILK 3',
+                    'LAVAZZA CAPPUCCINO 250ML',
+                    'LAVAZZA CAPPUCCINO 350ML',
+                    'LAVAZZA ESPRESSO',
+                    'LAVAZZA ICED COFFEE 350ML',
+                    'LAVAZZA ICED COFFEE 250ML',
+                    'LAVAZZA MOCHACCINO 350ML'
+                    ]
+     
+    total_coffees = 0.0
+
+    for name, quantity in coffees.items():
+          if name in coffee_list:
+              total_coffees += quantity
+
+    return total_coffees
+
+# All Coffees For Sugar Use
+def coffee_sugar():
+    coffee_list = ['BEAN COFFEE MACHINE',
+                    'LAVAZZA AMERI W/MILK 250ML',
+                    'LAVAZZA AMERICANO 250ML',
+                    'LAVAZZA AMERICANO 350ML',
+                    'LAVAZZA AMERICANO W/MILK 3',
+                    'LAVAZZA CAPPUCCINO 250ML',
+                    'LAVAZZA CAPPUCCINO 350ML',
+                    'LAVAZZA ESPRESSO',
+                    'LAVAZZA HOT CHOCOLATE 350M',
+                    'LAVAZZA MOCHACCINO 350ML',
+                    'LAVAZZA ICED COFFEE 350ML',
+                    'LAVAZZA ICED COFFEE 250ML',
+                    'ROOIBOS TEA 350ML',
+                    'ROOIBOS TEA 350ML',
                  ]
      
     total_coffees = 0.0
 
     for name, quantity in coffees.items():
-          if name in milk_list:
+          if name in coffee_list:
               total_coffees += quantity
 
     return total_coffees
-
 #  ########################################################################
 #  USER INTERFACE
 #  ########################################################################
@@ -124,13 +159,14 @@ while True:
     print('1 - Coffees that use milk')
     print('2 - Bean coffees')
     print('3 - Lavazza Coffee')
+    print('4 - Total Coffee Sales For Sugar')
 
     user = input('Please select an option: ')
 
     if user == '1':
         print()
         print('***********************************')
-        print(f'Coffees That Use Milk = {milk()}')
+        print(f'Coffees That Use Milk = {milk()[0]} and Pancakes Mande {milk()[1]}')
         print('***********************************')
     elif user == '2':
         print()
@@ -141,6 +177,11 @@ while True:
         print()
         print('***********************************')
         print(f'Lavazza Coffees = {lavazza_coffee()}')
+        print('***********************************')
+    elif user == '4':
+        print()
+        print('***********************************')
+        print(f'Total Coffees Sales For Sugar = {coffee_sugar()}')
         print('***********************************')
     else:
         print()
