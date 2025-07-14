@@ -1,5 +1,7 @@
+from email import contentmanager
 import os
 import sys
+import csv
 import pandas as pd
 
 #  ########################################################################
@@ -22,6 +24,34 @@ try:
         
     file = file_names[0]
         
+    data = pd.read_csv(file, skip_blank_lines=True, dtype=str, keep_default_na=False)
+
+except UnicodeDecodeError:
+    # Find Problem Line
+    with open(file, 'r') as f:
+        reader = csv.reader(f)
+
+        for row in reader:
+            name = row[1]
+            if name.strip() == 'DAIRYMAID NESTLÉ ROLO 90ML':
+                line_number = reader.line_num
+                line_data = row
+                line_data[1] = 'DAIRYMAID NESTLE ROLO 90ML'
+                new_line_data = ', '.join(line_data) + '\n'
+
+    # Change Problem Line
+    with open(file, 'r') as f:
+        content = f.readlines()
+    
+    content[line_number - 1] = new_line_data
+
+    # Write New Line To CSV File 
+    with open(file, 'w') as f:
+        f.writelines(content)
+
+    print('UnicodeDecodeError, Re-encoding...')
+
+    # Get Data Into Dataframe
     data = pd.read_csv(file, skip_blank_lines=True, dtype=str, keep_default_na=False)
      
 except Exception as error:
